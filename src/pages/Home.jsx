@@ -1,5 +1,5 @@
 import React from "react";
-import { SignedIn, SignedOut, SignInButton, UserButton, useAuth } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import Main from "../assets/q1-1.png";
 import Line from "../assets/line-decore.webp";
 import Logo from "../assets/logo-no-background.png";

@@ -112,7 +112,7 @@ export default function Form(props) {
 
     if (isFormValid) {
       try {
-        const response = await axios.post('http://localhost:8080/rides', bookingArray);
+        const response = await axios.post('https://cab-server.onrender.com', bookingArray);
         setNewRideDetails(response.data);
         setShowSummary(true);
         setBookingStatus('pending');
