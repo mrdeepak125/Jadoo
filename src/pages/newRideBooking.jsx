@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from 'axios';
-import { SignInButton, useAuth } from '@clerk/clerk-react';
 
 import AutocompleteInput from "../components/autoCompleteInput";
 import Maps from "../components/maps";
@@ -31,7 +30,7 @@ export default function Form(props) {
 
   const fetchUserBookings = useCallback(async () => {
     try {
-      const response = await axios.get('https://cab-server.onrender.com/rides');
+      const response = await axios.get('http://localhost:8080/rides');
       props.setAllRides(response.data);
     } catch (error) {
       console.error('Error fetching user bookings:', error);
@@ -112,7 +111,7 @@ export default function Form(props) {
 
     if (isFormValid) {
       try {
-        const response = await axios.post('https://cab-server.onrender.com/rides', bookingArray);
+        const response = await axios.post('http://localhost:8080/rides', bookingArray);
         setNewRideDetails(response.data);
         setShowSummary(true);
         setBookingStatus('pending');
@@ -124,28 +123,7 @@ export default function Form(props) {
     }
   };
 
-  const { isSignedIn } = useAuth()
-
-  if (!isSignedIn) {
-    return <div style={{
-    backgroundColor: "aquamarine",
-    width: "100%",
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    alignContent: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "10px",
-    }}>Sign in to view this page<br/><SignInButton style={{
-      background: "black",
-    color: "white",
-    width: "110px",
-    height: "50px",
-    borderRadius: "10px",
-    }}/></div>
-  }
+  
 
   return (
     <main className="h-full relative overflow-y-auto">
