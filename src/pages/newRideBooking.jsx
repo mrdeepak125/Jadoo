@@ -94,7 +94,7 @@ export default function Form(props) {
 
   const basicInfoForm = async (e) => {
     e.preventDefault();
-
+  
     const bookingArray = {
       name,
       phone,
@@ -106,9 +106,11 @@ export default function Form(props) {
       carType: cars.find((car) => car["Car Model"] === props.carType),
       status: 'pending'
     };
-
+  
+    console.log('Sending booking data:', bookingArray); // Add this for debugging
+  
     const isFormValid = validateForm();
-
+  
     if (isFormValid) {
       try {
         const response = await axios.post('https://cab-server.onrender.com/rides', bookingArray);
@@ -117,12 +119,11 @@ export default function Form(props) {
         setBookingStatus('pending');
         localStorage.setItem("rideDetails", JSON.stringify(response.data));
       } catch (error) {
-        console.error('Error booking ride:', error);
+        console.error('Error booking ride:', error.response?.data || error.message); // Updated error log
         setBookingStatus('error');
       }
     }
   };
-
   
 
   return (
