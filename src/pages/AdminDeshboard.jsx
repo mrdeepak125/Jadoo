@@ -18,7 +18,7 @@ export default function AdminDashboard() {
 
   const fetchBookings = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/admin/bookings');
+      const response = await axios.get('https://cab-server.onrender.com/admin/bookings');
       setBookings(response.data);
       setLoading(false);
     } catch (error) {
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
 
   const updateBookingStatus = async (bookingId, status) => {
     try {
-      await axios.put(`http://localhost:8080/admin/bookings/${bookingId}`, { status });
+      await axios.put(`https://cab-server.onrender.com/admin/bookings/${bookingId}`, { status });
       fetchBookings();
     } catch (error) {
       console.error('Error updating booking status:', error);

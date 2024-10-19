@@ -31,7 +31,7 @@ export default function Form(props) {
 
   const fetchUserBookings = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8080/rides');
+      const response = await axios.get('https://cab-server.onrender.com/rides');
       props.setAllRides(response.data);
     } catch (error) {
       console.error('Error fetching user bookings:', error);
